@@ -1,16 +1,41 @@
-# This is a sample Python script.
+import pandas as pd
+import os
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+datasetPath = 'data/massive_dataset/data'
 
+englishFilePath = os.path.join(datasetPath, 'en-US.jsonl')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+eng = pd.read_json(englishFilePath, lines=True)
 
+eng = eng[['id', 'utt', 'annot_utt']]
 
-# Press the green button in the gutter to run the script.
+def generate_matched_xlxs(language):
+    if language == 'en-US.jsonl':
+        return
+    try:
+        jsonl_file_path = os.path.join(datasetPath, language)
+
+        df = pd.read_json(jsonl_file_path, lines=True)
+
+        df = df[['id', 'utt', 'annot_utt']]
+
+        joinedDf = pd.merge(eng, df, on='id')
+
+        output_dir = 'data/matched_xlsx/'
+
+        os.makedirs(output_dir, exist_ok=True)
+
+        output_file_path = os.path.join(output_dir, f'en-{language[:2]}.xlsx')
+
+        joinedDf.to_excel(output_file_path, index=False) 
+
+        print(f"Successfully processed {language}")
+
+    except Exception as e:
+        print(f"Error processing {language}: {e}")
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    language = sys.argv[1]
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    generate_matched_xlxs(language)
