@@ -1,66 +1,23 @@
-import pandas as pd
-import os
 import sys
 import json
+from language_processor import LanguageProcessor
 
 datasetPath = 'data/massive_dataset/data'
 
-englishFilePath = os.path.join(datasetPath, 'en-US.jsonl')
+processor = LanguageProcessor(datasetPath)
 
-eng = pd.read_json(englishFilePath, lines=True)
+# Question 1
 
-eng = eng[['id', 'utt', 'annot_utt']]
+if __name__ == '__main__':
+    language = sys.argv[1]
 
-def generate_matched_xlxs(language):
-    if language == 'en-US.jsonl':
-        return
-    try:
-        jsonl_file_path = os.path.join(datasetPath, language)
+    processor.generate_matched_xlxs(language)
 
-        df = pd.read_json(jsonl_file_path, lines=True)
-
-        df = df[['id', 'utt', 'annot_utt']]
-
-        joinedDf = pd.merge(eng, df, on='id')
-
-        output_dir = 'data/matched_xlsx/'
-
-        os.makedirs(output_dir, exist_ok=True)
-
-        output_file_path = os.path.join(output_dir, f'en-{language[:2]}.xlsx')
-
-        joinedDf.to_excel(output_file_path, index=False) 
-
-        print(f"Successfully processed {language} and generated en-{language[:2]}.xlsx")
-
-    except Exception as e:
-        print(f"Error processing {language}: {e}")
-
-# if __name__ == '__main__':
-#     language = sys.argv[1]
-
-#     generate_matched_xlxs(language)
+# Question 2
 
 threeLanguages = ['en-US.jsonl', 'sw-KE.jsonl', 'de-DE.jsonl']
 
-def separate_on_partition(language):
-    filters = ['train', 'dev', 'test']    
-    filePath = os.path.join(datasetPath, language)
-    file = pd.read_json(filePath, lines=True)
-
-    for filter in filters:
-        file_filtered = file[file['partition'] == filter]
-        file_filtered = file_filtered.sort_values(by='id', ascending=True)
-
-        output_dir = 'data/partitions/'
-
-        os.makedirs(output_dir, exist_ok=True)
-
-        output_file_path = os.path.join(output_dir, f'{language[:2]}_{filter}.jsonl')
-
-        file_filtered.to_json(output_file_path, orient='records', lines=True)
-
-        print(file_filtered)
+processor.separate_on_partition()
 
 # for language in threeLanguages:
 #     separate_on_partition(language)
