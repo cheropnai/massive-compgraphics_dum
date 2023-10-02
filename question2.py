@@ -1,8 +1,8 @@
 from language_processor import LanguageProcessor
 
-DATASETPATH = 'data/massive_dataset/data'
+datasetpath = 'data/massive_dataset/data'
 
-processor = LanguageProcessor(DATASETPATH)
+processor = LanguageProcessor(datasetpath)
 
 # Question 2: 2
 threeLanguages = ['en-US.jsonl', 'sw-KE.jsonl', 'de-DE.jsonl']
