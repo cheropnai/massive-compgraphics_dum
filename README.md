@@ -27,7 +27,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 4. Data Import
-You should have already obtained the MASSIVE Dataset mentioned in the Data File. Ensure that you have this dataset, and it is accessible in your project directory.
+You should have already obtained the MASSIVE Dataset mentioned in the Data File. Ensure that you have this dataset, and it is accessible in your project directory. Save it to the ```data``` folder in the project directory.
 ### Task 1 - Language Translation
 In this task, we will generate en-xx.xlsx files for all languages where the pivot language is English. This will be done using the id, utt, and annot_utt columns from the dataset.
 To execute this task, run the following command on the terminal or GitBash Terminal in Windows:
