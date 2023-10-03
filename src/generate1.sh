@@ -8,5 +8,5 @@ languages=$(ls 'data/massive_dataset/data/')
 # Loop through the languages and run the main.py script for each language.
 cd src || exit
 for language in $languages; do
-  python main.py --language $language
+  python src/main.py --language $language
 done
