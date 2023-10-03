@@ -53,4 +53,4 @@ and
 This script will generate the required separated JSONL files and the large JSON file with all translations.
 
 #### Data Backup and Version Control
-Upload all generated files to a Google Drive Backup Folder for safekeeping. Done by runninng the ```upload.py``` file
+Upload all generated files to a Google Drive Backup Folder for safekeeping. Done by running the ```upload.py``` file
