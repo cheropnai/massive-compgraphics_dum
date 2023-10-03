@@ -1,6 +1,8 @@
-from language_processor import LanguageProcessor
+import os
 
-datasetpath = 'data/massive_dataset/data'
+from compgraphicscat.src.language_processor import LanguageProcessor
+
+datasetpath = '..\data\massive_dataset\data'
 
 processor = LanguageProcessor(datasetpath)
 
@@ -10,5 +12,5 @@ for language in threeLanguages:
     processor.separate_on_partition(language)
 
 # Question 2: 3
-location = 'data/partitions/'
+location = "..\outputs\partitions"
 processor.train_translation_json(location)

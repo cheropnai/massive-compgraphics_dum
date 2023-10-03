@@ -3,7 +3,7 @@ import json
 
 from language_processor import LanguageProcessor
 
-datasetPath = 'data/massive_dataset/data'
+datasetPath = '../data/massive_dataset/data'
 
 processor = LanguageProcessor(datasetPath)
 
