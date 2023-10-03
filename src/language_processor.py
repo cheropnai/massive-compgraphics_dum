@@ -24,7 +24,7 @@ class LanguageProcessor:
 
             joinedDf = pd.merge(eng, df, on='id')
 
-            output_dir = 'data/matched_xlsx/'
+            output_dir = 'outputs/matched_xlsx/'
 
             os.makedirs(output_dir, exist_ok=True)
 
@@ -47,7 +47,7 @@ class LanguageProcessor:
                 file_filtered = file[file['partition'] == filter]
                 file_filtered = file_filtered.sort_values(by='id', ascending=True)
 
-                output_dir = 'data/partitions/'
+                output_dir = 'outputs/partitions/'
 
                 os.makedirs(output_dir, exist_ok=True)
 
