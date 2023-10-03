@@ -13,7 +13,3 @@ if __name__ == '__main__':
 
     processor.generate_matched_xlxs(language)
 
-
-
-# train_set_translation()
-
